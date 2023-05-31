@@ -3,7 +3,7 @@ import static org.junit.Assert.*;
 
 class Testcomprador {
     @Test
-    public void testCompraExitosa() throws PagoIncorrectoException {
+    public void testCompraExitosa() throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
         // Configuración de prueba
         Moneda m = new Moneda1000();  // Crea un objeto Moneda válido
         int cual = Expendedor.COCA;  // Define el tipo de producto a comprar
@@ -16,4 +16,5 @@ class Testcomprador {
         assertEquals(500, comprador.cuantoVuelto());
         assertEquals("cocacola", comprador.queSacaste());
     }
+
 }
