@@ -9,7 +9,7 @@ class Expendedor {
 
     private Deposito snickers;
 
-    private int precioBebidas,precioDulces,num;
+    private int num;
     private int n1 = 1, n2 = 11, n3=111, n4=1111;
 
     private int aux,cual,j=0,j2=0,j3=0,j4=0;
@@ -20,7 +20,39 @@ class Expendedor {
 
     public static final int SNICKERS=4;
 
-    public Expendedor(int num, int precioBebidas,int precioDulces) {
+    public enum PrecioBebidas {
+        PRECIO1(1000), PRECIO2(500), PRECIO3(600);
+
+        private int precio;
+
+        PrecioBebidas(int precio) {
+            this.precio = precio;
+        }
+
+        public int getPrecio() {
+            return precio;
+        }
+    }
+
+    // Enumeración para los precios de los dulces
+    public enum PrecioDulces {
+        PRECIO1(500), PRECIO2(400), PRECIO3(600);
+
+        private int precio;
+
+        PrecioDulces(int precio) {
+            this.precio = precio;
+        }
+
+        public int getPrecio() {
+            return precio;
+        }
+    }
+
+
+    private PrecioBebidas precioBebidas;
+    private PrecioDulces precioDulces;
+    public Expendedor(int num, PrecioBebidas precioBebidas,PrecioDulces precioDulces) {
         coca = new Deposito();
         sprite = new Deposito();
         monVu100 = new Deposito();
@@ -59,7 +91,7 @@ class Expendedor {
     public Bebida comprarBebida(Moneda m, int cual) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
         this.cual=cual;
         if(m!=null) {
-            aux = m.getValor() - precioBebidas;
+            aux = m.getValor() - precioBebidas.getPrecio();
             monVu.addFirstMoneda(m);
             B = m;
 
@@ -89,8 +121,8 @@ class Expendedor {
 
         public Dulce comprarDulce(Moneda m, int cualdulce) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException {
             this.cual = cualdulce;
-            if (m != null) {
-                aux = m.getValor() - precioDulces;
+            if (m!= null) {
+                aux = m.getValor() - precioDulces.getPrecio();
                 monVu.addFirstMoneda(m);
                 B = m;
 
@@ -100,10 +132,10 @@ class Expendedor {
                 } else if (cual == SUPER8 && super8 != null && aux >= 0) {
                     j4++;
                     return super8.getDulce();
-                } else if(snickers==null){ //aqui nohayproductoexceptiom
+                } else if(cual== SNICKERS && snickers==null){ //aqui nohayproductoexceptiom
                     NoHayProductoException p= new NoHayProductoException("no hay dulce");
                     throw p;
-                } else if(super8==null){ //aqui nohayproductoexceptiom
+                } else if(cual==SUPER8 && super8==null){ //aqui nohayproductoexceptiom
                     NoHayProductoException p= new NoHayProductoException("no hay dulce");
                     throw p;
                 } else {
