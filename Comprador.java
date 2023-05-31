@@ -5,7 +5,7 @@ class Comprador{
     Dulce C;
     private String sonido;
     private int vuelto;
-    public Comprador(Moneda m, int cual, Expendedor exp) throws PagoIncorrectoException {
+    public Comprador(Moneda m, int cual, Expendedor exp) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
 
         if(cual == exp.SPRITE || cual== exp.COCA) {
             A = exp.comprarBebida(m, cual);
