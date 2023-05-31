@@ -56,7 +56,7 @@ class Expendedor {
         }
     }
 
-    public Bebida comprarBebida(Moneda m, int cual) throws PagoIncorrectoException {
+    public Bebida comprarBebida(Moneda m, int cual) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
         this.cual=cual;
         if(m!=null) {
             aux = m.getValor() - precioBebidas;
@@ -69,18 +69,25 @@ class Expendedor {
             } else if (cual == SPRITE && sprite != null && aux >= 0) {
                 j2++;
                 return sprite.getBebida();
-            } else {
-                return null;
+            } else if(cual==COCA && coca==null && aux>=0) {
+                NoHayProductoException p= new NoHayProductoException("no hay bebida");
+                throw p;
+            }  else if(cual==SPRITE && sprite==null && aux>=0) {
+                NoHayProductoException p= new NoHayProductoException("no hay bebida");
+                throw p;
+            } else{
+                PagoInsuficienteException p= new PagoInsuficienteException("valor de moneda insuficiente");
+                throw p;
             }
         }
         else{ // bebida null pagoincorrectoexcepcion
-            PagoIncorrectoException p= new PagoIncorrectoException("valor de la moneda incorrecto");
-                throw new PagoIncorrectoException("");
+            PagoIncorrectoException p= new PagoIncorrectoException("valor de moneda incorrecto");
+                throw p;
             //return ((Bebida) null);
         }
     }
 
-        public Dulce comprarDulce(Moneda m, int cualdulce) {
+        public Dulce comprarDulce(Moneda m, int cualdulce) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException {
             this.cual = cualdulce;
             if (m != null) {
                 aux = m.getValor() - precioDulces;
@@ -94,16 +101,19 @@ class Expendedor {
                     j4++;
                     return super8.getDulce();
                 } else if(snickers==null){ //aqui nohayproductoexceptiom
-                    return null;
+                    NoHayProductoException p= new NoHayProductoException("no hay dulce");
+                    throw p;
                 } else if(super8==null){ //aqui nohayproductoexceptiom
-                    return null;
+                    NoHayProductoException p= new NoHayProductoException("no hay dulce");
+                    throw p;
                 } else {
-                    return null;
+                    PagoInsuficienteException p= new PagoInsuficienteException("valor de moneda insuficiente");
+                    throw p;
                 }
             }
             else{
-                return null;
-
+                PagoIncorrectoException p= new PagoIncorrectoException("valor de moneda incorrecto");
+                throw p;
             }
         }
 
