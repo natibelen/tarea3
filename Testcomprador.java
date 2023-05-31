@@ -1,3 +1,6 @@
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 class Testcomprador {
     @Test
     public void testCompraExitosa() throws PagoIncorrectoException {
