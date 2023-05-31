@@ -1,3 +1,6 @@
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 class TestExpendedor{
     @Test
     public void testComprarBebida() throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
