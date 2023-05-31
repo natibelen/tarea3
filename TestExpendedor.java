@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 class TestExpendedor{
     @Test
     public void testComprarBebida() throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
-        Expendedor expendedor = new Expendedor(10, 500, 400);
+        Expendedor expendedor = new Expendedor(10, Expendedor.PrecioBebidas.PRECIO1, Expendedor.PrecioDulces.PRECIO2);
         Moneda monedaSuficiente = new Moneda1000();
         Moneda monedaInsuficiente = new Moneda100();
 
@@ -20,13 +20,13 @@ class TestExpendedor{
             assertEquals("valor de moneda insuficiente", e.getMessage());
         }
 
-        Expendedor expendedorvacio= new Expendedor(0,400,300);
+        Expendedor expendedorvacio= new Expendedor(0,Expendedor.PrecioBebidas.PRECIO3,Expendedor.PrecioDulces.PRECIO2);
         expendedorvacio.comprarBebida(monedaSuficiente,Expendedor.COCA);
     }
 
     @Test
     public void testComprarDulce() throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
-        Expendedor expendedor = new Expendedor(10, 500, 300);
+        Expendedor expendedor = new Expendedor(10, Expendedor.PrecioBebidas.PRECIO1, Expendedor.PrecioDulces.PRECIO2);
         Moneda monedaSuficiente = new Moneda500();
         Moneda monedaInsuficiente = new Moneda100();
 
@@ -45,7 +45,7 @@ class TestExpendedor{
 
 
         // Verificar que no se pueda comprar un dulce si no hay disponibilidad
-        Expendedor expendedorsindulce = new Expendedor(1, 500, 300);
+        Expendedor expendedorsindulce = new Expendedor(1, Expendedor.PrecioBebidas.PRECIO2, Expendedor.PrecioDulces.PRECIO2);
 
         Dulce dulce3 = expendedorsindulce.comprarDulce(monedaSuficiente, Expendedor.SNICKERS);
         Dulce dulce4 = expendedorsindulce.comprarDulce(monedaSuficiente, Expendedor.SNICKERS);
@@ -55,7 +55,7 @@ class TestExpendedor{
 
     @Test
     public void testGetVuelto() throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
-        Expendedor expendedor = new Expendedor(10, 500, 300);
+        Expendedor expendedor = new Expendedor(10, Expendedor.PrecioBebidas.PRECIO2, Expendedor.PrecioDulces.PRECIO2);
         Moneda monedaSuficiente = new Moneda1000();
         Moneda monedaInsuficiente = new Moneda100();
 
