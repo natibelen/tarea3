@@ -13,13 +13,12 @@ class TestExpendedor{
         try {
             Bebida bebida2 = expendedor.comprarBebida(monedaInsuficiente, Expendedor.SPRITE);
             fail("PagoInsuficienteException no fue lanzada");  // Esperamos que lance una excepción
-        } catch (PagoIncorrectoException e) {
-            assertEquals("valor de moneda incorrecto", e.getMessage());
         } catch (PagoInsuficienteException e) {
             assertEquals("valor de moneda insuficiente", e.getMessage());
-        } catch (NoHayProductoException e) {
-            assertEquals("no hay bebida", e.getMessage());
         }
+
+        Expendedor expendedorvacio= new Expendedor(0,400,300);
+        expendedorvacio.comprarBebida(monedaSuficiente,Expendedor.COCA);
     }
 
     @Test
@@ -43,9 +42,12 @@ class TestExpendedor{
 
 
         // Verificar que no se pueda comprar un dulce si no hay disponibilidad
-        Expendedor expendedorSinDulces = new Expendedor(0, 500, 300);
-        Dulce dulce3 = expendedorSinDulces.comprarDulce(monedaSuficiente, Expendedor.SNICKERS);
-        assertNull(dulce3);  // Verificar que el dulce sea nulo
+        Expendedor expendedorsindulce = new Expendedor(1, 500, 300);
+
+        Dulce dulce3 = expendedorsindulce.comprarDulce(monedaSuficiente, Expendedor.SNICKERS);
+        Dulce dulce4 = expendedorsindulce.comprarDulce(monedaSuficiente, Expendedor.SNICKERS);
+        assertNull(dulce4);  // Verificar que el dulce sea nulo
+
     }
 
     @Test
@@ -73,4 +75,5 @@ class TestExpendedor{
         assertNotNull(vuelto3);
         assertEquals(100, vuelto.getValor());
     }
+
 }
