@@ -21,8 +21,11 @@ class TestDeposito {
         Deposito deposito = new Deposito();
         Moneda moneda = new Moneda1000();
 
-        deposito.addMoneda(moneda);
+        //moneda null
+        assertNotEquals(moneda, deposito.getMoneda());
 
+        //moneda
+        deposito.addMoneda(moneda);
         assertEquals(moneda, deposito.getMoneda());
     }
 
