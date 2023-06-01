@@ -34,8 +34,11 @@ class TestDeposito {
         Deposito deposito = new Deposito();
         Dulce dulce = new Snickers(1);
 
-        deposito.addDulce(dulce);
+        //deposito vacio
+        assertNotEquals(dulce, deposito.getDulce());
 
+        //deposito con dulce
+        deposito.addDulce(dulce);
         assertEquals(dulce, deposito.getDulce());
     }
 
