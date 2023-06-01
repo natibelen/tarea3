@@ -5,11 +5,14 @@ class TestDeposito {
 
     @Test
     void testAddBebida() {
-        Deposito deposito = new Deposito();
+       Deposito deposito = new Deposito();
         Bebida bebida = new CocaCola(1);
 
-        deposito.addBebida(bebida);
+        //deposito vacio
+        assertNotEquals(bebida,deposito.getBebida());
 
+        //deposito con bebida
+        deposito.addBebida(bebida);
         assertEquals(bebida, deposito.getBebida());
     }
 
