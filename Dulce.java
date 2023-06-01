@@ -17,7 +17,7 @@ class Super8 extends Dulce {
     }
 
     public String comer() {
-        String b = "nam nam";
+        String b = "super8";
         return b;
     }
 }
@@ -27,7 +27,7 @@ class Snickers extends Dulce {
     }
 
     public String comer(){
-        String b = "num num";
+        String b = "snickers";
         return b;
     }
 }
