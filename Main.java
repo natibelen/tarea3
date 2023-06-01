@@ -28,5 +28,8 @@ public static void main(String[] args) throws PagoIncorrectoException, PagoInsuf
         Moneda500Test test7= new Moneda500Test();
         test7.getValor();
         
+        TestCasonormal test8= new TestCasonormal();
+        test8.compraexpende();
+
     }
 }
